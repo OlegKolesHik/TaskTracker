@@ -1,47 +1,40 @@
+import Manager.*;
+
+import Tasks.Epic;
+import Tasks.Subtask;
+import Tasks.Task;
+
+
 public class Main {
     public static void main(String[] args) {
 
-        Manager manager = new Manager();
-        System.out.println("Пришло время практики!");
+TaskManager taskManager = new Managers().getDefault();
+InMemoryTaskManager inMemoryTaskManager = new InMemoryTaskManager();
 
-        Task task = new Task("Задача №1", "Описание 1 задачи", "");
-        manager.creature(task);
-        System.out.println(task);
+Task task = new Task("Задача", "Описание", "");
+taskManager.creature(task);
+System.out.println("Создание задачи" + taskManager.creature(task));
 
-        Task task2 = new Task("Задача №2", "Описание 2 задачи", "");
-        manager.creature(task2);
-        System.out.println(task2);
+Subtask subtask = new Subtask("Подзадача №1", "Описание 1 подзадачи", "");
+taskManager.creatureSub(subtask);
+System.out.println("Создание подзадачи" + taskManager.creatureSub(subtask));
 
-        Epic epic = new Epic("Эпик 1", "Описание 1 эпика", "");
-        manager.creature(epic);
-        System.out.println(epic);
-        Subtask subtask = new Subtask("Подзадача 1", "Описание 1 подзадачи", "");
-        manager.creatureSub(subtask);
-        System.out.println(subtask);
-        Subtask subtask2 = new Subtask("Подзадача 2", "Описание 2 подзадачи", "");
-        manager.creatureSub(subtask2);
-        System.out.println(subtask2);
+Epic epic = new Epic("Эпик 1", "Описание 1 эпика", "");
+taskManager.creature(epic);
+System.out.println("Создание эпика" + taskManager.creature(epic));
+////////////////////////
 
-        Epic epic2 = new Epic("Эпик 2", "Описание 2 эпика", "");
-        manager.creature(epic2);
-        System.out.println(epic2);
+inMemoryTaskManager.getTask(44444l);
+taskManager.gettingId(333333l);
+System.out.println(inMemoryTaskManager.history());
 
-        Subtask subtask3 = new Subtask("Подзадача 1", "Описание 1 подзадачи", "");
-        manager.creatureSub(subtask3);
-        System.out.println(subtask3);
+taskManager.creatureSub(subtask);
+inMemoryTaskManager.getEpic(44444444l);
+System.out.println(inMemoryTaskManager.history());
 
-
-
-
-
-
-
-
-
-
-
+taskManager.clear();
+System.out.println(inMemoryTaskManager.history());
 
     }
-
 
 }

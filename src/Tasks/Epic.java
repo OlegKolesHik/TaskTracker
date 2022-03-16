@@ -1,12 +1,12 @@
+package Tasks;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Epic extends Task {
-    protected int subtaskIdNumber;
+    private Long subtaskIdNumber;
 
-    public Epic(String сaseName,
-                String taskDescription,
-                String statusTask) { // свои параметры и параметры супер-класса
+    public Epic(String сaseName, String taskDescription, String statusTask) { // свои параметры и параметры супер-класса
         super(сaseName, taskDescription, statusTask); // параметры супер-класса
         this.subtaskIdNumber = subtaskIdNumber;
 
@@ -14,18 +14,18 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return "Epic{" +
+        return "Tasks.Epic{" +
                 "сaseName='" + сaseName + '\'' +
                 ", EpicDescription='" + taskDescription + '\'' +
-                ", EpicIdNumber=" + taskIdNumber +
+                ", EpicIdNumber=" + getTaskIdNumber() +
                 ", statusTask='" + statusTask + '\'' +
                 '}';
     }
 
     public HashMap<Integer, Subtask> subtaskT;
 
-    public ArrayList<Integer> listIdSub() { //Список ID
-        ArrayList<Integer> ListId = new ArrayList<>();
+    public ArrayList<Long> listIdSub() { //Список ID
+        ArrayList<Long> ListId = new ArrayList<>();
         ListId.add(subtaskIdNumber);
         return ListId;
     }
@@ -40,18 +40,18 @@ public class Epic extends Task {
             st.add(subtaskT.get(k).getStatusTask());
         }
          if (st.isEmpty()) {
-              statusTask = "NEW";
+              statusTask = String.valueOf(TaskStatus.NEW);
             return;
          }
-         if (statusTask.equals("NEW")) {
+         if (statusTask.equals(TaskStatus.NEW)) {
             sNew = sNew + 1;
             return;
          }
-         if (statusTask.equals("DONE")) {
+         if (statusTask.equals(TaskStatus.DONE)) {
             sDone = sDone + 1;
              return;
          }
-         if (statusTask.equals("IN_PROGRESS")){
+         if (statusTask.equals(TaskStatus.IN_PROGRESS)){
              sInProgress = sInProgress + 1;
              return;
          }
